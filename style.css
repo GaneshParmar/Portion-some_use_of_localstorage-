@@ -1,0 +1,146 @@
+*{
+    margin: 10px 0px 0px 0px;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+body{
+    width: 100%;
+    height: fit-content;
+    margin: 0 2px;
+}
+
+h2,h3,h4{
+    text-align: center;
+    font-family: Verdana;
+}
+h2{
+    font-size: 2em;
+}
+h3{
+    font-size: 1.5em;
+    text-decoration: underline;
+}
+
+.information{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 20vh;
+    margin: 0 auto;
+    border: 0.1px solid black;
+    border-radius: 4px;
+    padding: 3px;
+    box-shadow: 1px 1px 7px rgb(182, 172, 172);
+}
+.information>h5>span{
+    color: white;
+    padding: 3px;
+}
+
+
+.information>h5>span:nth-child(1){
+    background-color: red;
+}
+
+.information>h5>span:last-child{
+    background-color: #319832;
+}
+
+.container{
+    margin: 0 auto;
+    width: 50%;
+    height: fit-content;
+}
+.Chapter{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+h4{
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg,#11a9c6,#b1fbff);
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px gray;
+    padding: 10px 20px;
+    margin: 0;   
+    z-index: 1; 
+}
+/* .container>h4>button{
+    /* background: url(dropdown.png); */
+    /* width: 30px;
+    height: 30px; */
+/* } */
+.container>.Chapter>h4>.drop_image{
+    position: absolute;
+    right: 0px;
+    width: 40px;
+    height: fit-content;
+    animation: wave_motion 1s infinite forwards;
+    cursor: pointer;
+}
+.topics{
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    /* background: linear-gradient(90deg,#11a9c6,#b1fbff); */
+    color: white;
+    /* transform: translateY(-100%); */
+}
+.topics>li{
+    margin: 0;
+    display: block;
+    text-align: start;
+    padding: 5px 4px;
+    cursor: pointer;
+    background: #ff512f;
+}
+hr{
+    margin: 0;
+}
+
+.maths_portion> i{
+    display: block;
+    text-align: center;
+}
+.maths_portion> i>b{
+    color: gray;
+    text-decoration: underline;
+    animation: blinking 1s infinite forwards;
+}
+@keyframes wave_motion {
+    0%{
+        transform: translateY(-2px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes blinking {
+    0%{
+        color: gray;
+    }
+    50%{
+        color: rgba(128, 128, 128, 0.397);
+    }
+    100%{
+        color: gray;
+    }
+}
+
+@media (max-width:600px) {
+    .container{
+        margin: 0 auto;
+        width: 90vw;
+        height: fit-content;
+    }
+}
