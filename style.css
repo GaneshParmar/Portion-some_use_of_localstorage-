@@ -87,6 +87,7 @@ h4{
 .topics{
     position: absolute;
     width: 100%;
+    height:max-content;
     margin: 0;
     /* background: linear-gradient(90deg,#11a9c6,#b1fbff); */
     color: white;
