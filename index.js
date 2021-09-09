@@ -95,6 +95,28 @@ Integration, Graphs of the hyperbolic functions, Logarithms of\
 complex quality, j(=i)as an operator(Electrical circuits) ,";               
 var complex=new string_to_array(comples_topics);
 
+var maths_third_chp_topics="Separation of\
+variables, Equations homogeneous in x and y, Non-homogeneous\
+linear equations, Exact differential Equation, Integrating Factor,\
+Linear Equation and equation reducible to this form, Method of\
+substitution,";
+var equn_of_first_order=new string_to_array(maths_third_chp_topics);
+
+var maths_4th_chap="Introduction, Solvable for p (or the method of factors), Solve for\
+y, Solve for x, Clairaut’s form of the equation, Methods of\
+Substitution, Method of Substitution.,";
+var differtial_of_first_order=new string_to_array(maths_4th_chap);
+
+var maths_5th_chap="Introduction, The Differential Operator, Linear\
+Differential Equation f(D) y = 0, Different cases depending on the\
+nature of the root of the equation f(D) = 0, Linear differential equation\
+f(D) y = X, The complimentary Function, The inverse operator 1/f(D)\
+and the symbolic expiration for the particular integral 1/f(D) X; the\
+general methods, Particular integral : Short methods, Particular\
+integral : Other methods, Differential equations reducible to the linear\
+differential equations with constant coefficients,";
+var linear_differentiation=new string_to_array(maths_5th_chap);
+
 // var All_sub_topics=[matrices,complex];
 
 // Dbms chapter
@@ -119,14 +141,15 @@ var db_design_3=new string_to_array(db_design);
 
 
 // Local storage
-
+//item name is the local storage key name
 class Local_Storage_{
-    constructor(item_name,topic_list,classname_topic,no_of_topics){
+    constructor(item_name,topic_list,classname_topic,no_of_topics,chap_topic_no){
         this.item_name=item_name;
         this.topic_list=topic_list;
         this.classname_topic=classname_topic;
         this.no_of_topics=no_of_topics;
         this.set_localstorage();
+        this.chap_topic_no=chap_topic_no;
     }
     total_all_topics_(list_of_topics) {
         var no_all_topics=0;
@@ -152,13 +175,13 @@ class Local_Storage_{
         }
     }
 
-    set_localstorage(){
+    set_localstorage_chap_state(){
         if(localStorage.getItem(`${this.item_name}`)==null){
             var current_states=[];
             // var temp=0;
             var total_topics=this.total_all_topics_(this.topic_list);
             // console.log(top);
-            for(var i=0;i<(this.no_of_topics);i++){
+            for(var i=0;i<(total_topics);i++){
                 current_states.push("normal");
                 // temp+=1;
                 // console.log(temp);
@@ -166,9 +189,38 @@ class Local_Storage_{
             localStorage.setItem(`${this.item_name}`,JSON.stringify(current_states));
         }
         else{
-            console.log("Ganesh");
+            var current_states=JSON.parse(localStorage.getItem(`${this.item_name}`));
+            console.log(current_states);
+            var old_no_states=current_states.length;
+            localStorage.setItem(`${this.item_name}`,"");
+            var total_topics=this.total_all_topics_(this.topic_list);
+            for(var i=old_no_states;i<(total_topics);i++){
+                current_states.push("normal");
+                // temp+=1;
+                // console.log(temp);
+            }
+            console.log(current_states);
+            localStorage.setItem(`${this.item_name}`,JSON.stringify(current_states));
             this.on_load_highlight();
         }
+    }
+
+    set_localstorage(){
+
+        if(localStorage.getItem(`${this.chap_topic_no}`)==null){
+            localStorage.setItem(`${this.chap_topic_no}`,"0");         
+        }
+        var total_topic_no_stored=parseInt(JSON.parse(localStorage.getItem(`${this.chap_topic_no}`)));
+        console.log("for total topic in local",total_topic_no_stored);
+        console.log("real time topic",this.topic_list.length)
+        if(total_topic_no_stored < (this.topic_list.length)){
+                this.set_localstorage_chap_state();
+                console.log("Hello!");
+        }
+        else{
+                this.on_load_highlight();
+            }
+
     }
 }
 
@@ -187,6 +239,9 @@ class Local_Storage_{
 // Maths
 var topic=new TOPIC("topic",matrices,0,"topic","maths_topics_state","maths_topics");
 var topic_2=new TOPIC("topic2",complex,14,"topic_2","maths_topics_state","maths_topics");
+var topic_3=new TOPIC("topic3",equn_of_first_order,29,"topic_3","maths_topics_state","maths_topics");
+var topic_4=new TOPIC("topic4",differtial_of_first_order,36,"topic_4","maths_topics_state","maths_topics");
+var topic_5=new TOPIC("topic5",linear_differentiation,43,"topic_5","maths_topics_state","maths_topics");
 
 // DBMS db_topic_1_ -> id of the li 
 var db_topic_1=new TOPIC("db_topic_1_",db_introduction_1,0,"db_topic_1","dbms_topics_state","dbms_topics");
@@ -194,8 +249,8 @@ var db_topic_2=new TOPIC("db_topic_2_",db_datamodal_2,6,"db_topic_2","dbms_topic
 var db_topic_3=new TOPIC("db_topic_3",db_design_3,11,"db_topic_3","dbms_topics_state","dbms_topics")
 //Local storage for each Sub
 
-var maths_localstorage=new Local_Storage_("maths_topics_state",[matrices,complex],"maths_topics",29);
-var dbms_localstorage=new Local_Storage_("dbms_topics_state",[db_introduction_1,db_datamodal_2,db_design_3],"dbms_topics",20);
+var maths_localstorage=new Local_Storage_("maths_topics_state",[matrices,complex,equn_of_first_order,differtial_of_first_order,linear_differentiation],"maths_topics",29,"maths_no_of_topics");
+var dbms_localstorage=new Local_Storage_("dbms_topics_state",[db_introduction_1,db_datamodal_2,db_design_3],"dbms_topics",20,"dbms_no_of_topics");
 // var li_element_count=document.getElementsByTagName("li").length;
 
 // var on_load_dbms=new on_load_highlight("dbms_topics_state","dbms_topics");
