@@ -48,7 +48,7 @@ class TOPIC{
         this.foo=temp-this.foo;
     }
     highlight(topic_done,list_no){
-        console.log(list_no);
+//         console.log(list_no);
         // var topic_srno=list_no+1;
         var topic_states=JSON.parse(localStorage.getItem(this.localstorage_item_name));
         // console.log(topic_srno);
@@ -190,7 +190,7 @@ class Local_Storage_{
         }
         else{
             var current_states=JSON.parse(localStorage.getItem(`${this.item_name}`));
-            console.log(current_states);
+//             console.log(current_states);
             var old_no_states=current_states.length;
             localStorage.setItem(`${this.item_name}`,"");
             var total_topics=this.total_all_topics_(this.topic_list);
@@ -199,7 +199,7 @@ class Local_Storage_{
                 // temp+=1;
                 // console.log(temp);
             }
-            console.log(current_states);
+//             console.log(current_states);
             localStorage.setItem(`${this.item_name}`,JSON.stringify(current_states));
             this.on_load_highlight();
         }
@@ -211,11 +211,11 @@ class Local_Storage_{
             localStorage.setItem(`${this.chap_topic_no}`,"0");         
         }
         var total_topic_no_stored=parseInt(JSON.parse(localStorage.getItem(`${this.chap_topic_no}`)));
-        console.log("for total topic in local",total_topic_no_stored);
-        console.log("real time topic",this.topic_list.length)
+//         console.log("for total topic in local",total_topic_no_stored);
+//         console.log("real time topic",this.topic_list.length)
         if(total_topic_no_stored < (this.topic_list.length)){
                 this.set_localstorage_chap_state();
-                console.log("Hello!");
+//                 console.log("Hello!");
         }
         else{
                 this.on_load_highlight();
